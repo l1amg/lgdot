@@ -1,0 +1,6 @@
+
+
+alias g='cd ~/Desktop/gits/'
+alias dot='g; cd lgdot/zsh/'
+alias b='export ARCH=`arch`; docker build --platform=linux/$ARCH --build-arg ARCH=$ARCH -t crdsh .'
+alias r='docker run -it -v /Users/liam.grogan/:/home/liam.grogan -it --rm crdsh'

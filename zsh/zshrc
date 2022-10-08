@@ -1,0 +1,16 @@
+
+OS=`uname -s`
+USER=`whoami`
+
+if [[ "$OS" = "Darwin" ]]; then
+  HOME="/Users/$USER"
+elif [[ "$OS" = "Linux" ]]; then
+  HOME="/home/$USER"
+else
+  echo "Can't find user"
+fi
+
+# Set shared history
+setopt share_history
+
+source $HOME/Desktop/gits/lgdot/zsh/dotZshRc

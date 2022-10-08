@@ -1,0 +1,15 @@
+
+OS=`uname -s`
+USER=`whoami`
+
+if [[ "$OS" = "Darwin" ]]; then
+  echo "It's Darwin"
+  HOME="/Users/$USER"
+elif [[ "$OS" = "Linux" ]]; then
+  echo "It's Linux"
+  HOME="/home/$USER"
+else
+  echo "Can't find user"
+fi
+
+source $HOME/Desktop/gits/lgdot/tmux/tmux.conf
