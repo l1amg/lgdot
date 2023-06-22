@@ -8,6 +8,8 @@ source ~/Desktop/gits/lgdot/zsh/aliases
 source ~/Desktop/gits/lgdot/zsh/autocomplete
 source ~/Desktop/gits/lgdot/zsh/functions/aws.sh
 source ~/Desktop/gits/lgdot/zsh/functions/git.sh
+source ~/Desktop/gits/lgdot/zsh/functions/k8s.sh
+source ~/Desktop/gits/lgdot/zsh/functions/misc.sh
 
 if [[ $OS = Linux ]];then
   source <(kubectl completion zsh)
