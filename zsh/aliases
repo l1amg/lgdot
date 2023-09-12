@@ -1,8 +1,10 @@
 
 alias g='cd ~/Desktop/gits/'
+alias eaas='g;cd environment-as-a-service'
 alias dot='g; cd lgdot/zsh/'
 alias b='cd /Users/liam.grogan/Desktop/gits/crdsh ;export ARCH=`arch`; docker build --platform=linux/$ARCH --build-arg ARCH=$ARCH --build-arg USER=liam.grogan -t crdsh .'
 alias r='docker run -it -v /Users/liam.grogan/:/home/liam.grogan -it --rm crdsh'
+alias rb='docker run --cpus=2 --memory=4gb -it -v /Users/liam.grogan/:/home/liam.grogan -it --rm crdsh'
 alias gopip='cd ~; . /opt/ws/venv/cno/bin/activate'
 
 

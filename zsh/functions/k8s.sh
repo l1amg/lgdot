@@ -26,7 +26,8 @@ function kusage {
 
 alias kxl='kubectl config get-contexts'
 alias kxs='kubectl config use-context $1'
-alias kn='kubectl get ns'
+alias kn='kubectl get ns |grep -v cert-manager |grep -v default |grep -v external-dns |grep -v flux-system |grep -v ingress-nginx |grep -v kube-node-lease |grep -v kube-public |grep -v kube-system |grep -v kyverno |grep -v metrics-server |grep -v observability'
+alias kna='kubectl get ns'
 alias kgp='k gp'
 alias kr='k r'
 alias kl='k l'
@@ -65,7 +66,7 @@ function k() {
             echo "all namespaces"
         fi
 
-        echo "NAMESPACE                 POD                           CPU_REQUEST     CPU_USAGE     MEMORY_REQUEST     MEMORY_USAGE"
+        echo "NAMESPACE           POD                           CPU_REQUEST     CPU_USAGE     MEMORY_REQUEST     MEMORY_USAGE"
 
         for ns in `echo $namespaces`; do
             # Get all pods in the namespace
@@ -79,7 +80,7 @@ function k() {
                 cpu_usage=$(kubectl top pod $pod -n $ns --no-headers | awk '{print $2}')
                 memory_usage=$(kubectl top pod $pod -n $ns --no-headers | awk '{print $3}')
 
-                echo "$ns     $pod     $cpu_request     $cpu_usage     $memory_request     $memory_usage"
+                echo "$ns           $pod     $cpu_request     $cpu_usage     $memory_request     $memory_usage"
             done
         done
         ;;

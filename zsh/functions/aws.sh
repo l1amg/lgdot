@@ -12,7 +12,7 @@ fi
 alias stsl='aws sts get-caller-identity 1>/dev/null 2>/dev/null'
 
 alias alc="aws eks list-clusters --output json | jq -r '.clusters[]'"
-alias auk='eks update-kubeconfig --name "$2" --region eu-west-2 --alias $2'
+alias auk='eks update-kubeconfig --name "$2" --region $AWS_REGION --alias $2'
 
 function a() {
   case "$1" in
@@ -22,11 +22,11 @@ function a() {
     "uk")
     aws eks update-kubeconfig --name "$2" --region eu-west-2 --alias $2
     ;;
-  esac  
+  esac
 }
 
 function asl(){
-  
+
   # Empty array
  typeset -a choices
 
@@ -51,7 +51,7 @@ function asl(){
  # Check if the input is a valid option
  if [[ $selection -ge 1 && $selection -le ${#choices} ]]; then
    export AWS_PROFILE="${choices[$selection]}"
-   # sts 1>&2 2> /dev/null 
+   # sts 1>&2 2> /dev/null
    #if [ $? -ne 0 ];then
    if ! stsl ; then
       #echo "You selected: ${choices[$selection]}"
@@ -61,6 +61,36 @@ function asl(){
    fi
  else
    echo "Invalid selection"
- fi 
+ fi
 }
 
+function rep(){
+
+COUNT=1
+
+	typeset -a accounts
+	for i in `grep "^\[" ~/.aws/report-configs | awk '{print $2}' | sed -e 's/\]//g'`
+	do
+		accounts+="$i"
+	done
+
+	for account in "${(@)accounts}"
+	do
+		echo "_____$COUNT) ${accounts[$COUNT]} ______ \n"
+    	  export AWS_PROFILE="${accounts[$COUNT]}"
+		    if ! stsl ; then
+			    aws sso login --profile ${accounts[$COUNT]} --no-browser
+		    else
+			    echo "AWS Profile: ${accounts[$COUNT]}"
+		    fi
+        for REGION in `echo "eu-west-1 eu-west-2"`
+        do
+          export AWS_REGION=$REGION
+          NUMBERC=`alc |wc -l `
+          echo "There are $NUMBERC clusters in this account in $REGION\n"
+          alc
+        done
+
+    COUNT=$((COUNT+1))
+	done
+}

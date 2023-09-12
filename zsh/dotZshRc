@@ -1,7 +1,7 @@
 
 # PATH
 
-export PATH="$HOME/bin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}:/usr/local/go/bin:$HOME/.local/bin:/usr/local/aws-cli/v2/current/dist"
+export PATH="$HOME/bin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}:/usr/local/go/bin:$HOME/.local/bin:/usr/local/aws-cli/v2/current/dist:$HOME/.tfenv/bin"
 
 # Load my aliases
 source ~/Desktop/gits/lgdot/zsh/aliases
